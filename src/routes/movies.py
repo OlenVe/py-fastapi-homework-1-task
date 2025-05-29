@@ -57,4 +57,4 @@ async def get_movie(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Movie with the given ID was not found."
         )
-    return movie
+    return MovieDetailResponseSchema.model_validate(movie)
