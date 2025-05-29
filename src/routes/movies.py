@@ -35,8 +35,10 @@ async def get_movie_list(
     next_page = (
         f"{base_url}?page={page + 1}&per_page={per_page}" if page < total_pages else None
     )
+    movies_data = [MovieDetailResponseSchema.model_validate(movie) for movie in movies]
+
     return MovieListResponseSchema(
-        movies=movies,
+        movies=movies_data,
         prev_page=prev_page,
         next_page=next_page,
         total_pages=total_pages,
